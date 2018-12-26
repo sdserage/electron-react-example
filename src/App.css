@@ -45,6 +45,11 @@
   margin-bottom: -1px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
+  cursor: pointer;
+}
+
+.list-group-item:hover {
+  background-color: #eee;
 }
 
 .list-group-flush .list-group-item {
@@ -55,4 +60,16 @@
 
 .list-group-flush:first-child .list-group-item:first-child {
   border-top: 0;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+}
+
+.thumbnail {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  margin-right: 16px;
 }
