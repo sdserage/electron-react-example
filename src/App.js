@@ -10,14 +10,14 @@ class App extends Component {
   };
 
   componentDidMount() {
-    axios.get("https://reddit.com/r/iamverysmart.json").then(response => this.setState({
+    axios.get("https://reddit.com/r/iamverysmart.json?raw_json=1").then(response => this.setState({
       posts: response.data.data.children,
     })).catch(error => {
       console.log("Error: ", error);
     });
   }
 
-  showImage = () => ipcRenderer.send('toggle-image');
+  showImage = image => ipcRenderer.send('toggle-image', image);
 
   render() {
     return (
@@ -27,7 +27,7 @@ class App extends Component {
             <li
               key={post.data.id}
               className="list-group-item flex-container"
-              onClick={this.showImage}
+              onClick={() => this.showImage(post.data.preview.images[0].source.url)}
             >
               <img src={post.data.thumbnail} alt="thumb" className="thumbnail" />d
               <div>{post.data.title}</div>
