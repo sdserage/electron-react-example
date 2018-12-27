@@ -8,8 +8,10 @@ const Router = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={App} />
-      <Route path="/image" component={Image} />
-      <Route path="/settings" component={Settings} />
+      <Route exact path="/image" component={Image} />
+      <Route exact path="/settings" component={Settings} />
     </Switch>
   </BrowserRouter>
-)
+);
+
+export default Router;

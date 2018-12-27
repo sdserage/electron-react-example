@@ -13,7 +13,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({width: 900, height: 680, webPreferences: {webSecurity: false}});
   imageWindow = new BrowserWindow({width: 600, height: 600, parent: mainWindow, show: true});
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
-  mainWindow.loadURL(isDev ? 'http://localhost:3000/image' : `file://${path.join(__dirname, '../build/index.html')}`);
+  imageWindow.loadURL(isDev ? 'http://localhost:3000/image' : `file://${path.join(__dirname, '../build/index.html')}`);
   mainWindow.on('closed', () => mainWindow = null);
 }
 
