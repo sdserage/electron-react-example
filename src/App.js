@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 
+const { ipcRenderer } = window.require('electron');
+
 class App extends Component {
   state = {
     posts: [],
@@ -15,12 +17,18 @@ class App extends Component {
     });
   }
 
+  showImage = () => ipcRenderer.send('toggle-image');
+
   render() {
     return (
       <div className="App">
         <ul className="list-group list-group-flush">
           {this.state.posts.map(post => (
-            <li key={post.data.id} className="list-group-item flex-container">
+            <li
+              key={post.data.id}
+              className="list-group-item flex-container"
+              onClick={this.showImage}
+            >
               <img src={post.data.thumbnail} alt="thumb" className="thumbnail" />d
               <div>{post.data.title}</div>
             </li>
