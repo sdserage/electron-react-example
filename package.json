@@ -1,6 +1,7 @@
 {
   "name": "electron-react-example",
   "author": "Scott D Serage",
+  "description": "A simple electron app demonstrating basic React integration.",
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
@@ -19,7 +20,9 @@
     "start": "react-scripts start",
     "react-build": "react-scripts build",
     "electron-build": "electron-builder",
+    "electron-quick-build": "electron-builder --dir",
     "build": "npm run react-build && npm run electron-build",
+    "quick-build": "npm run react-build && npm run electron-quick-build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "electron-dev": "concurrently \"BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
@@ -43,15 +46,5 @@
     "electron-builder": "^20.38.4",
     "wait-on": "^3.2.0"
   },
-  "main": "public/electron.js",
-  "build": {
-    "appId": "test-id",
-    "files": [
-      "./build/**/*",
-      "./public/electron.js"
-    ],
-    "mac": {
-      "category": "test"
-    }
-  }
+  "main": "public/electron.js"
 }

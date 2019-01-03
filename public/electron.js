@@ -1,5 +1,6 @@
-const { app, BrowserWindow, ipcMain, ipcRenderer, Menu } = require('electron');
+const { app, BrowserWindow, ipcMain, ipcRenderer, Menu, remote } = require('electron');
 
+// const con = remote.getGlobal('console');
 const path = require('path');
 const url = require('url');
 const isDev = require('electron-is-dev');
@@ -19,9 +20,12 @@ function createWindow() {
   imageWindow = new BrowserWindow({width: 600, height: 600, parent: mainWindow, show: false});
   settingsWindow = new BrowserWindow({width: 600, height: 600, parent: mainWindow, show: false});
 
-  mainWindow.loadURL(isDev ? 'http://localhost:3000' : prodUrl);
-  imageWindow.loadURL(isDev ? 'http://localhost:3000/image' : prodUrl);
-  settingsWindow.loadURL(isDev ? 'http://localhost:3000/settings' : prodUrl);
+
+  mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, "../build/index.html")}`);
+  imageWindow.loadURL(isDev ? 'http://localhost:3000/image' : prodUrl + "#/image");
+  settingsWindow.loadURL(isDev ? 'http://localhost:3000/settings' : prodUrl + "#/settings");
+
+  // con.log(path);
 
   mainWindow.webContents.openDevTools();
 
