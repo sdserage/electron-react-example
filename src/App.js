@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css';
 
 const { ipcRenderer, remote } = window.require('electron');
-const { Menu } = remote;
+// const { Menu } = remote;
 
 class App extends Component {
   state = {
@@ -11,7 +11,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.initMenu();
+    // this.initMenu();
     axios.get("https://reddit.com/r/iamverysmart.json?raw_json=1").then(response => this.setState({
       posts: response.data.data.children,
     })).catch(error => {
@@ -21,35 +21,35 @@ class App extends Component {
 
   showImage = image => ipcRenderer.send('toggle-image', image);
 
-  initMenu = () => {
-    const menu = Menu.buildFromTemplate([
-      {
-        label: "File",
-        submenu: [
-          {label: "New Window"},
-          {
-            label: 'Settings',
-            accelerator: "CmdOrCtrl+,",
-            click: () => ipcRenderer.send('toggle-settings'),
-          },
-          {type: 'separator'},
-          {
-            label: 'Quit',
-            role: 'quit',
-          },
-        ]
-      },
-      {
-        label: 'Edit',
-        submenu: [
-          {label: "Menu Item 1"},
-          {label: "Menu Item 2"},
-          {label: "Menu Item 3"},
-        ],
-      }
-    ]);
-    Menu.setApplicationMenu(menu);
-  };
+  // initMenu = () => {
+  //   const menu = Menu.buildFromTemplate([
+  //     {
+  //       label: "File",
+  //       submenu: [
+  //         {label: "New Window"},
+  //         {
+  //           label: 'Settings',
+  //           accelerator: "CmdOrCtrl+,",
+  //           click: () => ipcRenderer.send('toggle-settings'),
+  //         },
+  //         {type: 'separator'},
+  //         {
+  //           label: 'Quit',
+  //           role: 'quit',
+  //         },
+  //       ]
+  //     },
+  //     {
+  //       label: 'Edit',
+  //       submenu: [
+  //         {label: "Menu Item 1"},
+  //         {label: "Menu Item 2"},
+  //         {label: "Menu Item 3"},
+  //       ],
+  //     }
+  //   ]);
+  //   Menu.setApplicationMenu(menu);
+  // };
 
   render() {
     return (
